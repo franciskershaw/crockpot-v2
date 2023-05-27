@@ -1,0 +1,40 @@
+{
+  "name": "crockpot-v2",
+  "version": "2.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "node api/server.js",
+    "server": "nodemon api/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/franciskershaw/crockpot-v2.git"
+  },
+  "author": "Francis Kershaw",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/franciskershaw/crockpot-v2/issues"
+  },
+  "homepage": "https://github.com/franciskershaw/crockpot-v2#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cloudinary": "^1.37.0",
+    "colors": "^1.4.0",
+    "connect-mongo": "^5.0.0",
+    "cookie-parser": "^1.4.6",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "express-async-handler": "^1.2.0",
+    "jsonwebtoken": "^9.0.0",
+    "moment": "^2.29.4",
+    "mongoose": "^7.2.1",
+    "multer": "^1.4.5-lts.1",
+    "multer-storage-cloudinary": "^4.0.0",
+    "uuidv4": "^6.2.13"
+  },
+  "devDependencies": {
+    "concurrently": "^8.0.1",
+    "nodemon": "^2.0.22"
+  }
+}
