@@ -1,6 +1,6 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
-const { isLoggedIn, isRightUser } = require('../middleware/authMiddleware');
+const { isLoggedIn } = require('../middleware/authMiddleware');
 const {
   createUser,
   loginUser,

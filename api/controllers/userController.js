@@ -139,6 +139,7 @@ const getUserInfo = async (req, res, next) => {
   }
 };
 
+// Helper
 function prepareUserData(user) {
   let userData = {
     _id: user._id,
