@@ -19,59 +19,38 @@ const UserSchema = mongoose.Schema({
       ref: 'Recipe',
     },
   ],
-  recipeMenu: [
-    {
-      _id: mongoose.Schema.Types.ObjectId,
-      serves: Number,
-    },
-  ],
-  shoppingList: [
-    {
-      _id: mongoose.Schema.Types.ObjectId,
-      quantity: Number,
-      unit: String,
-      obtained: Boolean,
-    },
-  ],
-  regularItems: [
-    {
-      _id: mongoose.Schema.Types.ObjectId,
-      quantity: Number,
-      unit: String,
-    },
-  ],
-  extraItems: [
-    {
-      _id: mongoose.Schema.Types.ObjectId,
-      quantity: Number,
-      unit: String,
-      obtained: Boolean,
-    },
-  ],
+  recipeMenu: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'RecipeMenu',
+  },
+  shoppingList: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'ShoppingList',
+  },
 });
 
 // middleware to remove deleted recipe from user's 'favouriteRecipes' and 'recipeMenu'
-UserSchema.pre('findOneAndDelete', async function (next) {
-  try {
-    const deletedRecipe = await this.findOne();
-    const recipeId = deletedRecipe._id;
-    
-    // remove recipe id from user's 'favouriteRecipes'
-    await User.updateMany(
-      { favouriteRecipes: recipeId },
-      { $pull: { favouriteRecipes: recipeId } }
-    );
+// UserSchema.pre('findOneAndDelete', async function (next) {
+//   try {
+//     const deletedRecipe = await this.findOne();
+//     const recipeId = deletedRecipe._id;
 
-    // remove recipe id from user's 'recipeMenu'
-    await User.updateMany(
-      { 'recipeMenu._id': recipeId },
-      { $pull: { recipeMenu: { _id: recipeId } } }
-    );
+//     // remove recipe id from user's 'favouriteRecipes'
+//     await User.updateMany(
+//       { favouriteRecipes: recipeId },
+//       { $pull: { favouriteRecipes: recipeId } }
+//     );
 
-    next();
-  } catch (error) {
-    next(error);
-  }
-});
+//     // remove recipe id from user's 'recipeMenu'
+//     await User.updateMany(
+//       { 'recipeMenu._id': recipeId },
+//       { $pull: { recipeMenu: { _id: recipeId } } }
+//     );
+
+//     next();
+//   } catch (error) {
+//     next(error);
+//   }
+// });
 
 module.exports = mongoose.model('User', UserSchema);
