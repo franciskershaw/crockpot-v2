@@ -13,12 +13,15 @@ const UserSchema = mongoose.Schema({
   isAdmin: {
     type: Boolean,
   },
-  favouriteRecipes: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Recipe',
-    },
-  ],
+  favouriteRecipes: {
+    type: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Recipe',
+      },
+    ],
+    required: true,
+  },
   recipeMenu: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'RecipeMenu',
@@ -28,29 +31,5 @@ const UserSchema = mongoose.Schema({
     ref: 'ShoppingList',
   },
 });
-
-// middleware to remove deleted recipe from user's 'favouriteRecipes' and 'recipeMenu'
-// UserSchema.pre('findOneAndDelete', async function (next) {
-//   try {
-//     const deletedRecipe = await this.findOne();
-//     const recipeId = deletedRecipe._id;
-
-//     // remove recipe id from user's 'favouriteRecipes'
-//     await User.updateMany(
-//       { favouriteRecipes: recipeId },
-//       { $pull: { favouriteRecipes: recipeId } }
-//     );
-
-//     // remove recipe id from user's 'recipeMenu'
-//     await User.updateMany(
-//       { 'recipeMenu._id': recipeId },
-//       { $pull: { recipeMenu: { _id: recipeId } } }
-//     );
-
-//     next();
-//   } catch (error) {
-//     next(error);
-//   }
-// });
 
 module.exports = mongoose.model('User', UserSchema);

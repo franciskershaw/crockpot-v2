@@ -13,6 +13,7 @@ const ItemSchema = {
   unit: {
     type: String,
     required: true,
+    enum: ['g', 'cans', 'tbsp', 'tsp', 'ml', ''],
   },
 };
 
