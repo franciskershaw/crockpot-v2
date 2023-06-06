@@ -36,10 +36,7 @@ const isLoggedIn = asyncHandler(async (req, res, next) => {
         'INVALID_TOKEN'
       );
     } else {
-      throw new UnauthorizedError(
-        'An error occurred while trying to authenticate the token',
-        'INVALID_TOKEN'
-      );
+      next(err);
     }
   }
 });
